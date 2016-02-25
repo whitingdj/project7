@@ -6,6 +6,7 @@ var $volumeButton = $(".volume-btn");
 var $fullScreen = $("#full-screen");
 var $progress = $('#progress')[0];
 var $progressBar = $('#progress-bar')[0];
+var $controls =$('#video-controls');
 
 
 /******************************************
@@ -91,13 +92,50 @@ $video[0].addEventListener('timeupdate', function() {
 
 
 /******************************************
-Skip Ahead- JavaScript
+Skip Ahead
 ******************************************/
 
-$progress.click(function(e) {
-   var pos = (e.pageX  - this.offsetLeft) / this.offsetWidth;
-   $video[0].currentTime = pos * video[0].duration;
+
+
+
+/******************************************
+Hide controls except Progress Bar
+******************************************/
+
+/*$video.on({
+    mouseenter: function () {
+      $controls.show();
+    },
+    mouseleave: function () {
+      $controls.hide();
+    }
+});
+*/
+
+
+/******************************************
+Update currentTime and duration
+******************************************/
+
+function intoSeconds(seconds, showHours) {
+    if(showHours) {
+        var hours = Math.floor(seconds / 3600),
+            seconds = seconds - hours * 3600;
+    }
+    var minutes = ("0" + Math.floor(seconds/60)).slice(-2);
+    var seconds = ("0" + parseInt(seconds%60,10)).slice(-2);
+
+    if(showHours) {
+        var time = hours + ":" + minutes + ":" +  seconds;
+    } else {
+        var time = minutes + ":" + seconds + " " + "/";
+    }
+    return time;
+}
+
+var video = $video;
+video.bind("timeupdate", function () {
+    $('#current').html(intoSeconds(video[0].currentTime));
+    $('#duration').html(intoSeconds(video[0].duration));
 });
 
-/*$('#current').append($video[0].currentTime);
-$('#duration').append($video[0].duration);*/

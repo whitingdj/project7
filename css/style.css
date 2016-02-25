@@ -10,8 +10,7 @@ Containers
 ******************************************/
 
 
-#video-container,
-.caption{
+#video-container{
 	text-align: center;
 	position: relative;
 }
@@ -30,35 +29,38 @@ video::-webkit-media-controls-enclosure {
 	position: absolute;
   	background-color: #000;
 	width: 61.55%;
-	top: 308px;
-	margin: 0 135px;
+	top: 310px;
+	margin: 0 200px;
 	opacity: .7;
     z-index: 2147483647;
 }
-
 
 
 /******************************************
 Buttons/progress bar
 ******************************************/
 
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
+/*#play-pause,
+.volume-btn,
+.mute-btn,
+.full-screen,
+#duration
+#current{
+	display: none;
 }
-
+*/
 
 button{
 	background-color: #000;
 	border-color: #000;
 	margin-top: 1px;
   	float: right;
-
 }
 
 progress{
   width: 100%;
   height: 3px;
-  background-color: #999;
+  background-color: yellow;
 }
 
 progress:before {
@@ -72,6 +74,7 @@ progress:before {
   float: left;
 }
 
+
 .pause-btn{
 	display: none;
 }
@@ -80,6 +83,12 @@ progress:before {
 #duration{
 	display: inline-block;
 	color: #fff;
+	margin-top: 5px;
+	font-size: small;
+}
+
+#current{
+	padding-left: 10px;
 }
 
 .volume-btn{
