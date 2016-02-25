@@ -1,8 +1,8 @@
 var $video = $("#video-player");
-var $playButton = $(".play-btn");
+var $playButton = $("#play-pause");
 var $pauseButton = $(".pause-btn");
-var $muteButton = $(".mute-btn");
-var $volumeButton = $(".volume-btn");
+var $muteButton = $("#mute");
+
 var $fullScreen = $("#full-screen");
 var $progress = $('#progress')[0];
 var $progressBar = $('#progress-bar')[0];
@@ -14,16 +14,16 @@ Play and Pause Buttons
 ******************************************/
  
 $playButton.click(function () { 
-	$video.get(0).play(); //plays the video
-	$('.play-btn').hide();
-	$('.pause-btn').show();		
-});
-
-$pauseButton.click(function () { 
-	$video.get(0).pause(); //pauses the video
-	$('.pause-btn').hide();
-	$('.play-btn').show();
-});
+	if ($video.get(0).paused){ 
+			$video.get(0).play(); //plays the video
+			$('.play-btn').hide();
+			$('.pause-btn').show();		
+		} else{
+			$video.get(0).pause(); //pauses the video
+			$('.pause-btn').hide();
+			$('.play-btn').show();
+		}
+	});
 
 
 /******************************************
@@ -31,16 +31,16 @@ Volume and Mute Buttons
 ******************************************/
 
 $muteButton.click(function () { 
-	$video.prop('muted', true); //mutes the video
-	$('.mute-btn').hide();
-	$('.volume-btn').show();		
-});
-
-$volumeButton.click(function () { 
-	$video.prop('muted', false); //gives sound to the video
-	$('.volume-btn').hide();
-	$('.mute-btn').show();
-});
+	if($video.prop('muted', false)){ 
+		$video.prop('muted', true); //mutes the video
+			$('.mute-btn').hide();
+			$('.volume-btn').show();		
+	} else {
+		$video.prop('muted', false); //gives sound to the video
+		$('.volume-btn').hide();
+		$('.mute-btn').show();
+		}
+	});
 
 /******************************************
 Full Screen Button
