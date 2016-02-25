@@ -25,16 +25,20 @@
     </div>
 
       <!-- Video Controls -->
-    <div id="outer-container">
       <div id="video-controls">
+        <div class="progress">
+            <progress id="progress" value="0" min="0">
+               <span id="progress-bar"></span>
+            </progress>
         <button type="button" id="play-pause"><img class="play-btn" src="icons/play-icon.png"><img class="pause-btn" src="icons/pause-icon.png"></button>
-        <input type="range" id="seek-bar" value="0">
-        <button type="button" id="mute"><img src="icons/volume-off-icon.png" class="mute-btn"><img src="icons/volume-on-icon.png" class="volume-btn"></button>
-        <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+        <div id="current"></div>
+        <div id="duration"></div>
         <button type="button" id="full-screen"><img src="icons/fullscreen-icon.png"></button>
+        <button type="button" id="mute"><img src="icons/volume-off-icon.png" class="mute-btn"><img src="icons/volume-on-icon.png" class="volume-btn"></button>
+        </div>
       </div>
-    </div>
     
+    <br>
 
     <div class="caption">
       <p>

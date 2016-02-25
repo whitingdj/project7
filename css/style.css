@@ -1,31 +1,104 @@
 
+body{
+	font-family: 'Ubuntu', sans-serif;
+	color: #888;
+}
+
+
+/******************************************
+Containers
+******************************************/
+
+
 #video-container,
 .caption{
 	text-align: center;
 	position: relative;
 }
 
+#video-player:-webkit-full-screen video {
+  width: 100%;
+  height: 100%;
+}
+
+video::-webkit-media-controls-enclosure {
+  display:none !important;
+}
+
+
 #video-controls{
-	text-align: center;
-	border: 1px solid black;
-    position: relative;
-    margin: 0 230px;
-    background-color: black;
+	position: absolute;
+  	background-color: #000;
+	width: 61.55%;
+	top: 308px;
+	margin: 0 135px;
+	opacity: .7;
+    z-index: 2147483647;
+}
+
+
+
+/******************************************
+Buttons/progress bar
+******************************************/
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+
+button{
+	background-color: #000;
+	border-color: #000;
+	margin-top: 1px;
+  	float: right;
+
+}
+
+progress{
+  width: 100%;
+  height: 3px;
+  background-color: #999;
+}
+
+progress:before {
+    display: block;
+    width: 35%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+#play-pause{
+  float: left;
 }
 
 .pause-btn{
 	display: none;
 }
 
+#current,
+#duration{
+	display: inline-block;
+	color: #fff;
+}
+
 .volume-btn{
 	display: none;
 }
+
+#mute,
+#full-screen{
+	float: right;
+	display: inline-block;
+}
+
+
+
+/******************************************
+Caption
+******************************************/
 
 .caption{
 	margin: 20px 180px;
 }
 
-p{
-	font-family: 'Ubuntu', sans-serif;
-	color: #888;
-}
