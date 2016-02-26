@@ -30,8 +30,8 @@ video::-webkit-media-controls-enclosure {
 	position: absolute;
   	background-color: #000;
 	width: 61.55%;
-	top: 310px;
-	margin: 0 200px;
+	top: 206px;
+	margin: 0 70px;
 	opacity: .7;
     z-index: 2147483647;
 }
@@ -61,7 +61,7 @@ button{
 progress{
   width: 100%;
   height: 3px;
-  background-color: yellow;
+  background-color: green;
 }
 
 progress:before {
@@ -113,3 +113,33 @@ Caption
 	margin: 20px 180px;
 }
 
+.highlight{
+	background-color: yellow;
+}
+
+/******************************************
+Media Queries
+******************************************/
+
+@media screen and (min-width: 480px){
+  #video-controls{
+    width: 61.55%;
+    top: 245px;
+    margin: 0 100px;
+  }
+}
+
+@media screen and (min-width: 768px){
+  #video-controls{
+    width: 61.55%;
+    top: 310px;
+    margin: 0 150px;
+  }
+}
+@media screen and (min-width: 1024px){
+  #video-controls{
+    width: 61.55%;
+    top: 310px;
+    margin: 0 200px;
+  }
+}

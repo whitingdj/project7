@@ -2,11 +2,11 @@ var $video = $("#video-player");
 var $playButton = $("#play-pause");
 var $pauseButton = $(".pause-btn");
 var $muteButton = $("#mute");
-
 var $fullScreen = $("#full-screen");
 var $progress = $('#progress')[0];
 var $progressBar = $('#progress-bar')[0];
-var $controls =$('#video-controls');
+var $controls =$('#wrapper');
+var $caption = $('#caption');
 
 
 /******************************************
@@ -31,16 +31,19 @@ Volume and Mute Buttons
 ******************************************/
 
 $muteButton.click(function () { 
-	if($video.prop('muted', false)){ 
-		$video.prop('muted', true); //mutes the video
-			$('.mute-btn').hide();
-			$('.volume-btn').show();		
-	} else {
-		$video.prop('muted', false); //gives sound to the video
-		$('.volume-btn').hide();
-		$('.mute-btn').show();
-		}
-	});
+  if($video.prop('muted', false)){ 
+    $video.prop('muted', true); //mutes the video
+      $('.mute-btn').hide();
+      $('.volume-btn').show();    
+      console.log('yea duuuuuuude');
+  } else {
+    $video.prop('muted', false); //gives sound to the video
+      $('.volume-btn').hide();
+      $('.mute-btn').show();
+      console.log('yea maaaaaaaaaaaaan');
+    }
+  });
+
 
 /******************************************
 Full Screen Button
@@ -102,7 +105,7 @@ Skip Ahead
 Hide controls except Progress Bar
 ******************************************/
 
-/*$video.on({
+$video.on({
     mouseenter: function () {
       $controls.show();
     },
@@ -110,7 +113,7 @@ Hide controls except Progress Bar
       $controls.hide();
     }
 });
-*/
+
 
 
 /******************************************
@@ -139,3 +142,26 @@ video.bind("timeupdate", function () {
     $('#duration').html(intoSeconds(video[0].duration));
 });
 
+/******************************************
+Highlight Text from Video
+******************************************/
+
+ $(function() {
+    var transcript = $("span");
+    var i = 0;
+    var time = $video[0].currentTime;
+        $.each(transcript, function(){
+               var start = $(transcript[i]).attr("data-start");
+               var startNum = parseFloat(start);
+               if (time >= startNum){
+                    $(transcript[i]).addClass("highlight");
+                    console.log('yup, got this part');
+               } else {
+                    $(transcript[i]).removeClass("highlight");
+                    console.log('did you go for two!?!');
+               } 
+               i++;
+            });
+
+
+            });
