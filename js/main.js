@@ -32,12 +32,12 @@ Volume and Mute Buttons
 
 $muteButton.click(function () { 
   if($video[0].muted == false){ 
-    $video[0].muted == true; //mutes the video
+    $video[0].muted = true; //mutes the video
       $('.mute-btn').hide();
       $('.volume-btn').show();    
       console.log('yea duuuuuuude');
   } else {
-    $video[0].muted == false; //gives sound to the video
+    $video[0].muted = false; //gives sound to the video
       $('.volume-btn').hide();
       $('.mute-btn').show();
       console.log('yea maaaaaaaaaaaaan');
