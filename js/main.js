@@ -31,13 +31,13 @@ Volume and Mute Buttons
 ******************************************/
 
 $muteButton.click(function () { 
-  if($video.prop('muted', false)){ 
-    $video.prop('muted', true); //mutes the video
+  if($video[0].muted == false){ 
+    $video[0].muted == true; //mutes the video
       $('.mute-btn').hide();
       $('.volume-btn').show();    
       console.log('yea duuuuuuude');
   } else {
-    $video.prop('muted', false); //gives sound to the video
+    $video[0].muted == false; //gives sound to the video
       $('.volume-btn').hide();
       $('.mute-btn').show();
       console.log('yea maaaaaaaaaaaaan');
@@ -105,14 +105,14 @@ Skip Ahead
 Hide controls except Progress Bar
 ******************************************/
 
-$video.on({
+/*$video.on({
     mouseenter: function () {
       $controls.show();
     },
     mouseleave: function () {
       $controls.hide();
     }
-});
+});*/
 
 
 
