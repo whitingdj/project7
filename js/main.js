@@ -1,4 +1,5 @@
 var $video = $("#video-player");
+var $vidContainer = $("#video-container");
 var $playButton = $("#play-pause");
 var $pauseButton = $(".pause-btn");
 var $muteButton = $("#mute");
@@ -96,7 +97,7 @@ $video[0].addEventListener('timeupdate', function() {
 Skip Ahead
 ******************************************/
 $video.bind("timeupdate", videoTimeUpdateHandler);
-$progress.mousedown(progressMouseDownHandler);
+$progress.mousedown(progressMouseDown);
         
         function videoTimeUpdateHandler(e) {
             var video = $video.get(0);
@@ -104,7 +105,7 @@ $progress.mousedown(progressMouseDownHandler);
             updateProgressWidth(percent);
         }
         
-        function progressMouseDownHandler(e) {
+        function progressMouseDown(e) {
             var $this = $(this);
             var x = e.pageX - $this.offset().left;
             var percent = x / $this.width();
@@ -122,21 +123,16 @@ $progress.mousedown(progressMouseDownHandler);
         }
 
 
-
-
-
 /******************************************
 Hide controls except Progress Bar
 ******************************************/
 
-/*$video.on({
-    mouseenter: function () {
-      $controls.show();
-    },
-    mouseleave: function () {
-      $controls.hide();
-    }
-});*/
+$vidContainer.mouseenter(function () {
+      $controls.show('slow', 'swing');
+    }),
+$vidContainer.mouseleave(function () {
+      $controls.hide('slow', 'swing');
+    });
 
 
 
@@ -187,5 +183,4 @@ Highlight Text from Video
                i++;
             });
 
-
-            });
+          });
