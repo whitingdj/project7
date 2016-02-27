@@ -3,8 +3,8 @@ var $playButton = $("#play-pause");
 var $pauseButton = $(".pause-btn");
 var $muteButton = $("#mute");
 var $fullScreen = $("#full-screen");
-var $progress = $('#progress')[0];
-var $progressBar = $('#progress-bar')[0];
+var $progress = $('#progress');
+var $progressBar = $('#progress-bar');
 var $controls =$('#wrapper');
 var $caption = $('#caption');
 
@@ -35,12 +35,10 @@ $muteButton.click(function () {
     $video[0].muted = true; //mutes the video
       $('.mute-btn').hide();
       $('.volume-btn').show();    
-      console.log('yea duuuuuuude');
   } else {
     $video[0].muted = false; //gives sound to the video
       $('.volume-btn').hide();
       $('.mute-btn').show();
-      console.log('yea maaaaaaaaaaaaan');
     }
   });
 
@@ -81,22 +79,48 @@ Progress Bar - JavaScript
 ******************************************/
 
 $video[0].addEventListener('loadedmetadata', function() {
-   $progress.setAttribute('max', $video[0].duration);
+   $progress[0].setAttribute('max', $video[0].duration);
 });
 $video[0].addEventListener('timeupdate', function() {
-   $progress.value = $video[0].currentTime;
-   $progressBar.style.width = Math.floor(($video[0].currentTime / $video[0].duration) * 100) + '%';
+   $progress[0].value = $video[0].currentTime;
+   $progressBar[0].style.width = Math.floor(($video[0].currentTime / $video[0].duration) * 100) + '%';
 });
 $video[0].addEventListener('timeupdate', function() {
-   if (!$progress.getAttribute('max')) $progress.setAttribute('max', $video[0].duration);
-   $progress.value = $video[0].currentTime;
-   $progressBar.style.width = Math.floor(($video[0].currentTime / $video[0].duration) * 100) + '%';
+   if (!$progress[0].getAttribute('max')) $progress[0].setAttribute('max', $video[0].duration);
+   $progress[0].value = $video[0].currentTime;
+   $progressBar[0].style.width = Math.floor(($video[0].currentTime / $video[0].duration) * 100) + '%';
 });
 
 
 /******************************************
 Skip Ahead
 ******************************************/
+$video.bind("timeupdate", videoTimeUpdateHandler);
+$progress.mousedown(progressMouseDownHandler);
+        
+        function videoTimeUpdateHandler(e) {
+            var video = $video.get(0);
+            var percent = video.currentTime / video.duration;
+            updateProgressWidth(percent);
+        }
+        
+        function progressMouseDownHandler(e) {
+            var $this = $(this);
+            var x = e.pageX - $this.offset().left;
+            var percent = x / $this.width();
+            updateProgressWidth(percent);
+            updateVideoTime(percent);
+        }
+        
+        function updateProgressWidth(percent) {
+            $progressBar.width((percent * 100) + "%");
+        }
+        
+        function updateVideoTime(percent) {
+            var video = $video.get(0);
+            video.currentTime = percent * video.duration;
+        }
+
 
 
 
