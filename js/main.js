@@ -162,37 +162,45 @@ video.bind("timeupdate", function () {
     $('#duration').html(intoSeconds(video[0].duration));
 });
 
+function secondsFromTimespan(timeSpan) {
+    if(!timeSpan || !timeSpan.indexOf(':')) return 0;
+    var parts = timeSpan.split(':');
+    return +parts[0] * 60 + +parts[1]
+}
+
 /******************************************
 Highlight Text from Video
 ******************************************/
 
  $(function() {
-    var transcript = $("span");
-    var i = 0;
-    var time = intoSeconds($video[0].currentTime);
-        $.each(transcript, function(){
-               var start = $(transcript[i]).attr("data-start");
-               var startNum = parseFloat(start);
-               if (time >= startNum){
-                    $(transcript[i]).addClass("highlight");
-               } else {
-                    $(transcript[i]).removeClass("highlight");
-               } 
-               i++;
-            });
-
-
-   $video[0].addEventListener('timeupdate', function() {
-      var start = $(transcript).attr("data-start");
-      var startNum = parseFloat(start);
-     //Compare the video's current time to the spans data-start attributes  here//
-     if (time === startNum){
-                    $(transcript).addClass("highlight");
-                    console.log('importante');
-               } else {
-                    $(transcript).removeClass("highlight");
-                    console.log('ive created a monster');
-               }  
+     var transcript = $("span[data-start]");
+     var i = 0;
+     var time = intoSeconds($video[0].currentTime);
+     $.each(transcript, function() {
+         var start = $(transcript[i]).attr("data-start");
+         var startNum = parseFloat(start);
+         if (time >= startNum) {
+             $(transcript[i]).addClass("highlight");
+             console.log('#1 stunna');
+         } else {
+             $(transcript[i]).removeClass("highlight");
+             console.log('#2 freals');
+         }
+         i++;
      })
-});
+
+     $video[0].addEventListener('timeupdate', function() {
+        for(i=0; i < transcript.length; i++) {
+          if(secondsFromTimespan($(transcript[i]).attr("data-start")) == Math.floor($video[0].currentTime)){
+            if(i == 0) {
+               $(transcript[i]).addClass("highlight");
+            }else{
+               $(transcript[i-1]).removeClass("highlight");
+               $(transcript[i]).addClass("highlight");
+            }
+          }
+        }
+      })
+   });
+        
 
