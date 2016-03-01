@@ -120,7 +120,7 @@ Media Queries
 @media screen and (min-width: 480px){
   #video-controls{
     width: 61.55%;
-    top: 245px;
+    top: 315px;
     margin: 0 100px;
   }
 }
@@ -137,5 +137,11 @@ Media Queries
     width: 61.55%;
     top: 310px;
     margin: 0 200px;
+  }
+}
+
+@media (min-aspect-ratio: 16/9) {
+  #video-controls {
+    height: auto;
   }
 }

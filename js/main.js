@@ -169,18 +169,30 @@ Highlight Text from Video
  $(function() {
     var transcript = $("span");
     var i = 0;
-    var time = $video[0].currentTime;
+    var time = intoSeconds($video[0].currentTime);
         $.each(transcript, function(){
                var start = $(transcript[i]).attr("data-start");
                var startNum = parseFloat(start);
                if (time >= startNum){
                     $(transcript[i]).addClass("highlight");
-                    console.log('yup, got this part');
                } else {
                     $(transcript[i]).removeClass("highlight");
-                    console.log('did you go for two!?!');
                } 
                i++;
             });
 
-          });
+
+   $video[0].addEventListener('timeupdate', function() {
+      var start = $(transcript).attr("data-start");
+      var startNum = parseFloat(start);
+     //Compare the video's current time to the spans data-start attributes  here//
+     if (time === startNum){
+                    $(transcript).addClass("highlight");
+                    console.log('importante');
+               } else {
+                    $(transcript).removeClass("highlight");
+                    console.log('ive created a monster');
+               }  
+     })
+});
+
