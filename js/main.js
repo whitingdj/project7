@@ -49,30 +49,34 @@ Full Screen Button
 ******************************************/
 
 $fullScreen.click(function() {
-	var video = $video[0]; // redefine global var in order to manipulate true DOM methods
-  if (video.requestFullscreen) { //enter fullscreen
-    video.requestFullscreen();
-  } else if (video.msRequestFullScreen) {
-  	 video.msRequestFullscreen();
-  } else if (video.mozRequestFullScreen) {
-     video.mozRequestFullScreen(); // Firefox
-  } else if (video.webkitRequestFullscreen) {
-     video.webkitRequestFullscreen(); // Chrome and Safari
+    toggleFullScreen();
+  });
+  
+  function toggleFullScreen() {
+   var videoDiv = document.getElementById('video-container');
+    if (!document.fullscreenElement &&
+        !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {
+      if (videoDiv.requestFullscreen) {
+        videoDiv.requestFullscreen();
+      } else if (videoDiv.msRequestFullscreen) {
+        videoDiv.msRequestFullscreen();
+      } else if (videoDiv.mozRequestFullScreen) {
+        videoDiv.mozRequestFullScreen();
+      } else if (videoDiv.webkitRequestFullscreen) {
+        videoDiv.webkitRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+    }
   }
-});
-
-$fullScreen.click(function() {
-	var video = $video[0]; // redefine global var in order to manipulate true DOM methods
-  if (video.exitFullscreen) { //exit fullscreen
-    video.exitFullscreen();
-  } else if (video.msExitFullscreen) {
-  	 video.msExitFullscreen();
-  } else if (video.mozCancelFullScreen) {
-     video.mozCancelFullScreen(); // Firefox
-  } else if (video.webkitExitFullscreen) {
-     video.webkitExitFullscreen(); // Chrome and Safari
-  }
-});
 
 
 /******************************************
@@ -128,10 +132,10 @@ Hide controls except Progress Bar
 ******************************************/
 
 $vidContainer.mouseenter(function () {
-      $controls.show('slow', 'swing');
+      $controls.fadeIn(500);
     }),
 $vidContainer.mouseleave(function () {
-      $controls.hide('slow', 'swing');
+      $controls.fadeOut(500);
     });
 
 
@@ -181,10 +185,8 @@ Highlight Text from Video
          var startNum = parseFloat(start);
          if (time >= startNum) {
              $(transcript[i]).addClass("highlight");
-             console.log('#1 stunna');
          } else {
              $(transcript[i]).removeClass("highlight");
-             console.log('#2 freals');
          }
          i++;
      })
