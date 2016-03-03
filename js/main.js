@@ -176,33 +176,20 @@ function secondsFromTimespan(timeSpan) {
 Highlight Text from Video
 ******************************************/
 
- $(function() {
-     var transcript = $("span[data-start]");
-     var i = 0;
-     var time = intoSeconds($video[0].currentTime);
-     $.each(transcript, function() {
-         var start = $(transcript[i]).attr("data-start");
-         var startNum = parseFloat(start);
-         if (time >= startNum) {
-             $(transcript[i]).addClass("highlight");
-         } else {
-             $(transcript[i]).removeClass("highlight");
-         }
-         i++;
-     })
+var transcript = $("span[data-start]");
 
-     $video[0].addEventListener('timeupdate', function() {
-        for(i=0; i < transcript.length; i++) {
-          if(secondsFromTimespan($(transcript[i]).attr("data-start")) == Math.floor($video[0].currentTime)){
-            if(i == 0) {
-               $(transcript[i]).addClass("highlight");
-            }else{
-               $(transcript[i-1]).removeClass("highlight");
-               $(transcript[i]).addClass("highlight");
-            }
+ $video[0].addEventListener('timeupdate', function() {
+    for(i=0; i < transcript.length; i++) {
+      if(secondsFromTimespan($(transcript[i]).attr("data-start")) == Math.floor($video[0].currentTime)){
+        if(i == 0) {
+          $(transcript[i]).addClass("highlight");
+          }else{
+            $(transcript[i-1]).removeClass("highlight");
+            $(transcript[i]).addClass("highlight");
           }
         }
-      })
-   });
+      }
+    });
+
         
 

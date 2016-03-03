@@ -26,6 +26,10 @@ Containers
   height: 100%;
 }
 
+#video-player{
+  width: 100%;
+}
+
 video::-webkit-media-controls-enclosure {
   display:none !important;
 }
@@ -40,10 +44,11 @@ video:-moz-full-screen{ max-height: 100%; }
 	position: absolute;
   background-color: #000;
 	width: 100%;
-	top: 240px;
 	margin: 0 auto;
 	opacity: .7;
   z-index: 2147483647;
+  bottom: 0;
+  left:0;
 }
 
 #wrapper:hover{
@@ -64,15 +69,8 @@ button{
 
 progress{
   width: 100%;
-  height: 3px;
+  height: 7px;
   background-color: #8A8585;
-}
-
-progress:before {
-    display: block;
-    width: 35%;
-    height: 100%;
-    border-radius: 5px;
 }
 
 #play-pause{
@@ -117,37 +115,13 @@ Caption
 	margin: 0 auto;
   border-radius: 5px;
   border: 10px double #077D4C;
-  width: 60%;
+  width: 90%;
 }
 
 .highlight{
 	background-color: #077D4C;
+  color: #ddd;
 }
 
-/******************************************
-Media Queries
-******************************************/
 
-@media screen and (min-width: 480px){
-  #video-controls{
-    width: 61.55%;
-    top: 315px;
-    margin: 0 100px;
-  }
-}
-
-@media screen and (min-width: 768px){
-  #video-controls{
-    width: 61.55%;
-    top: 310px;
-    margin: 0 150px;
-  }
-}
-@media screen and (min-width: 1024px){
-  #video-controls{
-    width: 61.55%;
-    top: 310px;
-    margin: 0 200px;
-  }
-}
 
