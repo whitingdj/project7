@@ -175,19 +175,27 @@ function secondsFromTimespan(timeSpan) {
 function constructIntervals(transcripts) {
     var intervals = [];
     for(var i = 0; i < transcripts.length; i++) {
-        if(i == transcripts.length - 1) continue;
-        intervals.push({
-            lowerBound: $(transcripts[i]).attr('data-start'),
-            upperBound: $(transcripts[i + 1]).attr('data-start'),
-            transcript: transcripts[i] // current transcript
-        });
+        if(i == transcripts.length - 1) {
+            intervals.push({
+                lowerBound: secondsFromTimespan($(transcripts[i]).attr('data-start')),
+                upperBound: Math.floor($video[0].duration),
+                transcript: transcripts[i] // current transcript
+            });
+        } else {
+            intervals.push({
+                lowerBound: secondsFromTimespan($(transcripts[i]).attr('data-start')),
+                upperBound: secondsFromTimespan($(transcripts[i + 1]).attr('data-start')),
+                transcript: transcripts[i] // current transcript
+            });
+        }
+
     }
     return intervals;
 }
 
 function isTimeWithinInterval(interval, currentTime) {
-    var lowerBoundSeconds = secondsFromTimespan(interval.lowerBound);
-    var upperBoundSeconds = secondsFromTimespan(interval.upperBound);
+    var lowerBoundSeconds = interval.lowerBound;
+    var upperBoundSeconds = interval.upperBound;
     return lowerBoundSeconds <= currentTime && currentTime < upperBoundSeconds;
 }
 
