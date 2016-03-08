@@ -1,13 +1,11 @@
 var $video = $("#video-player");
 var $vidContainer = $("#video-container");
 var $playButton = $("#play-pause");
-var $pauseButton = $(".pause-btn");
 var $muteButton = $("#mute");
 var $fullScreen = $("#full-screen");
 var $progress = $('#progress');
 var $progressBar = $('#progress-bar');
 var $controls =$('#wrapper');
-var $caption = $('#caption');
 
 
 /******************************************
@@ -32,7 +30,7 @@ Volume and Mute Buttons
 ******************************************/
 
 $muteButton.click(function () { 
-  if($video[0].muted == false){ 
+  if($video[0].muted === false){ 
     $video[0].muted = true; //mutes the video
       $('.mute-btn').hide();
       $('.volume-btn').show();    
@@ -169,7 +167,7 @@ video.bind("timeupdate", function () {
 function secondsFromTimespan(timeSpan) {
     if(!timeSpan || !timeSpan.indexOf(':')) return 0;
     var parts = timeSpan.split(':');
-    return +parts[0] * 60 + +parts[1]
+    return +parts[0] * 60 + +parts[1];
 }
 
 function constructIntervals(transcripts) {
@@ -217,7 +215,7 @@ $(function () {
                 $(intervals[i].transcript).addClass('highlight');
             }
         }
-    })
+    });
 
 });
 
